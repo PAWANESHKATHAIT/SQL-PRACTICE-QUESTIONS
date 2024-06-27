@@ -50,6 +50,18 @@ JOIN Grades g
     ON s.Marks BETWEEN g.Min_Mark AND g.Max_Mark
     WHERE g.Grade < 8
     ORDER BY Grade DESC, Name ASC, Marks ASC;
+    
 
+Question Link: https://leetcode.com/problems/average-time-of-process-per-machine/description/
+
+--SOLUTION 
+SELECT t1.machine_id, ROUND(AVG(t2.timestamp - t1.timestamp), 3)
+AS processing_time
+FROM Activity t1
+LEFT JOIN Activity t2 
+    ON t1.process_id = t2.process_id
+    AND t1.machine_id = t2.machine_id
+    AND t1.timestamp < t2.timestamp
+GROUP BY t1.machine_id;
 
 
