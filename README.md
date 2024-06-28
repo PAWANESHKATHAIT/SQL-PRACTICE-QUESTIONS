@@ -64,4 +64,17 @@ LEFT JOIN Activity t2
     AND t1.timestamp < t2.timestamp
 GROUP BY t1.machine_id;
 
+Question Link : https://leetcode.com/problems/employee-bonus/description/
+
+--Solution
+SELECT T1.name, T2.bonus
+FROM Employee T1
+LEFT JOIN Bonus T2
+    ON T1.empId = T2.empId
+    WHERE bonus < 1000
+    OR bonus IS NULL;
+
+
+
+
 
