@@ -98,3 +98,17 @@ GROUP BY
 ORDER BY
     s.student_id, sub.subject_name;
 
+
+Question Link : https://www.hackerrank.com/challenges/what-type-of-triangle/problem?isFullScreen=true
+
+--Solution 
+SELECT 
+    CASE 
+        WHEN A + B <= C OR A + C <= B OR B + C <= A THEN 'Not A Triangle'
+        WHEN A = B AND B = C AND A = C THEN 'Equilateral'
+        WHEN A = B OR A = C OR B = C THEN 'Isosceles'
+        ELSE 'Scalene'
+    END AS TriangleType
+FROM TRIANGLES;
+
+Question Link:
