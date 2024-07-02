@@ -52,7 +52,7 @@ JOIN Grades g
     ORDER BY Grade DESC, Name ASC, Marks ASC;
     
 
-Question Link: https://leetcode.com/problems/average-time-of-process-per-machine/description/
+Question Link : https://leetcode.com/problems/average-time-of-process-per-machine/description/
 
 --SOLUTION 
 SELECT t1.machine_id, ROUND(AVG(t2.timestamp - t1.timestamp), 3)
@@ -123,4 +123,15 @@ JOIN(SELECT managerId
     HAVING COUNT(*) >=5
     ) AS m
 ON e.id = m.managerId;
+
+Question Link : https://leetcode.com/problems/confirmation-rate/description/?envType=study-plan-v2&envId=top-sql-50
+
+--Solution 
+SELECT s.user_id,
+       ROUND(IFNULL(SUM(CASE WHEN c.action = 'confirmed' THEN 1 ELSE 0 END) / COUNT(c.user_id), 0), 2) AS confirmation_rate
+FROM Signups s
+LEFT JOIN Confirmations c
+    ON s.user_id = c.user_id
+GROUP BY s.user_id;
+
 
