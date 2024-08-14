@@ -163,6 +163,29 @@ JOIN Packages p2
 WHERE p2.Salary > p1.Salary
 ORDER BY p2.Salary;
 
+Question Link: https://leetcode.com/problems/list-the-products-ordered-in-a-period/description/?envType=study-plan-v2&envId=top-sql-50
+--solotion
+SELECT p.product_name, SUM(o.unit) as unit
+FROM Products p
+JOIN Orders o
+    ON p.product_id = o.product_id 
+WHERE  o.order_date >= '2020-02-01' AND o.order_date <= '2020-02-29'
+GROUP BY p.product_name
+HAVING unit >= 100;
+
+Question Link: https://leetcode.com/problems/group-sold-products-by-the-date/description/?envType=study-plan-v2&envId=top-sql-50
+
+
+~ Group_concat : used to concatenate data from multiple rows into one field. This is an aggregate (GROUP BY) function that returns a String value 
+--solution
+SELECT
+    sell_date,
+    COUNT(DISTINCT product) AS num_sold,
+    GROUP_CONCAT(DISTINCT product ORDER BY product SEPARATOR ',') AS products
+FROM Activities
+GROUP BY sell_date
+ORDER BY sell_date;
+
 
 
 
