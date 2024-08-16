@@ -173,6 +173,8 @@ WHERE  o.order_date >= '2020-02-01' AND o.order_date <= '2020-02-29'
 GROUP BY p.product_name
 HAVING unit >= 100;
 
+--Advanced Function
+
 Question Link: https://leetcode.com/problems/group-sold-products-by-the-date/description/?envType=study-plan-v2&envId=top-sql-50
 
 
@@ -185,6 +187,19 @@ SELECT
 FROM Activities
 GROUP BY sell_date
 ORDER BY sell_date;
+
+Question Link : https://leetcode.com/problems/find-users-with-valid-e-mails/?envType=study-plan-v2&envId=top-sql-50
+
+REGEXP : It allows you to search for specific patterns in text data, making it a powerful tool for filtering, extracting, and validating text in SQL queries.
+
+--Solution
+SELECT *
+FROM Users
+WHERE mail REGEXP '^[A-Za-z][A-Za-z0-9_\.\-]*@leetcode(\\?com)?\\.com$';
+
+
+
+--Basic Aggregate Functions--
 
 Question Link : https://leetcode.com/problems/project-employees-i/description/?envType=study-plan-v2&envId=top-sql-50
 
