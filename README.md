@@ -247,4 +247,23 @@ FROM
     Transactions
 GROUP BY DATE_FORMAT(trans_date, '%Y'-%m'), country;
     
+Question Link : https://leetcode.com/problems/immediate-food-delivery-ii/?envType=study-plan-v2&envId=top-sql-50
+
+--Solution
+WITH cte AS (
+    SELECT 
+        *,
+        ROW_NUMBER() OVER(PARTITION BY customer_id ORDER BY order_date) AS rn
+    FROM 
+        delivery
+)
+
+SELECT 
+    ROUND(SUM(IF(order_date = customer_pref_delivery_date, 1, 0)) * 100.0 / COUNT(*), 2) AS immediate_percentage
+FROM 
+    cte
+WHERE 
+    rn = 1;
+
+
 
