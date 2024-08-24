@@ -282,3 +282,29 @@ FROM Activity a
 JOIN temp t 
     ON a.player_id = t.player_id;
 
+--Advanced Select and Joins--
+
+Question Link : https://leetcode.com/problems/the-number-of-employees-which-report-to-each-employee/
+
+--Solution 
+WITH ManagerDetails AS (
+    SELECT 
+        e1.employee_id,
+        e1.name,
+        COUNT(e2.employee_id) AS reports_count,
+        ROUND(AVG(e2.age), 0) AS average_age
+    FROM Employees e1
+    LEFT JOIN Employees e2 
+        ON e1.employee_id = e2.reports_to
+    WHERE e2.employee_id IS NOT NULL
+    GROUP BY e1.employee_id, e1.name
+    HAVING COUNT(e2.employee_id) > 0
+)
+SELECT 
+    employee_id,
+    name,
+    reports_count,
+    average_age
+FROM ManagerDetails
+ORDER BY employee_id;
+
